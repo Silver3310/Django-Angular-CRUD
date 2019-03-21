@@ -151,7 +151,7 @@ crashlytics-build.properties
 fabric.properties
 
 # Local Database
-djangocrud/db.sqlite3
+djangocrud/djangocrud/db.sqlite3
 
 # security files
 djangocrud/djangocrud/settings/security

@@ -1,3 +1,11 @@
 from django.db import models
 
-# Create your models here.
+
+class Movie(models.Model):
+    """
+    Custom model for movies
+    """
+    title = models.CharField(max_length=32)
+    desc = models.TextField(max_length=256)
+    year = models.IntegerField()
+
