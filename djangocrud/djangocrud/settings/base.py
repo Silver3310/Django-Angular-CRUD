@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 import dj_database_url
 
-from .security import secret_key, db_uri
+from .security import secret_key, db_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'djangocrud.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = dict()
-DATABASES['default'] = dj_database_url.config(default=db_uri.postgres_uri)
+DATABASES['default'] = dj_database_url.config(default=db_url.postgres_url)
 
 
 # Password validation
