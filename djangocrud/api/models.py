@@ -9,3 +9,5 @@ class Movie(models.Model):
     desc = models.TextField(max_length=256)
     year = models.IntegerField()
 
+    def __str__(self):
+        return f'{self.title} ({self.year})'
