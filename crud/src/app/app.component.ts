@@ -8,20 +8,79 @@ import { ApiService } from './api.service';
   providers: [ApiService]    
 })
 export class AppComponent {
-  movies = [{title: 'test'}];
+  movies = [];
+  selectedMovie;
     
   constructor(private api: ApiService) {
-    this.getMovies();  
+    this.getMovies();
+    this.selectedMovie = {
+        id: -1,
+        title: '',
+        desc: '',
+        year: 0
+    };
   }
 
   getMovies = () => {
-      this.api.getAllMovies().subscribe(
-        data => {
-          this.movies = data;
-        },
-        error => {
-          console.log(error)
-        }
-      );
-  }   
+    this.api.getAllMovies().subscribe(
+      data => {
+        this.movies = data;
+      },
+      error => {
+        console.log(error)
+      }
+    );
+  }
+    
+  movieClicked = (movie) => {
+    this.api.getOneMovie(movie.id).subscribe(
+      data => {
+        this.selectedMovie = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+      
+  updateMovie = () => {
+    this.api.updateMovie(this.selectedMovie).subscribe(
+      data => {
+        this.selectedMovie = data;
+        let index = this.movies.findIndex(function(movie) {
+            return movie.id === data.id;
+        });
+        this.movies[index].title = this.selectedMovie.title;
+      },
+      error => { 
+        console.log(error);
+      }
+    );
+  }
+      
+  createMovie = () => {
+    this.api.createMovie(this.selectedMovie).subscribe(
+      data => {
+        this.movies.push(data);
+      },
+      error => { 
+        console.log(error);
+      }
+    );
+  }
+    
+  deleteMovie = () => {
+    this.api.deleteMovie(this.selectedMovie.id).subscribe(
+      data => {
+        let deletedId = this.selectedMovie.id;  
+        let index = this.movies.findIndex(function(movie) {
+            return movie.id === deletedId;
+        });
+        this.movies.splice(index, 1);
+      },
+      error => { 
+        console.log(error);
+      }
+    );
+  }
 }
