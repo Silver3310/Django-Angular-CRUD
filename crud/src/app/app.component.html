@@ -1,20 +1,24 @@
 <!--The content below is only a placeholder and can be replaced.-->
+<div class="container">
 <h2>List of movies</h2>
-<ul>
-  <li *ngFor="let movie of movies">
+<ul class="list-group">
+  <li *ngFor="let movie of movies" class="list-group-item">
     <h2 (click)="movieClicked(movie)">{{ movie.title }}</h2>
   </li>
 </ul>
 <hr>
-Title <input type="text" [(ngModel)]="selectedMovie.title"/><br>
-Description <input type="desc" [(ngModel)]="selectedMovie.desc"/><br>
-Year <input type="year" [(ngModel)]="selectedMovie.year"/><br>
-<button *ngIf="selectedMovie.id != -1" (click)="updateMovie()">
+<div class="row">
+Title <input type="text" [(ngModel)]="selectedMovie.title" class="form-control"/><br>
+Description <input type="desc" [(ngModel)]="selectedMovie.desc" class="form-control"/><br>
+Year <input type="year" [(ngModel)]="selectedMovie.year" class="form-control"/><br>
+<button *ngIf="selectedMovie.id != -1" (click)="updateMovie()" class="btn btn-outline-dark my-2">
     PUT
 </button>
-<button *ngIf="selectedMovie.id == -1" (click)="createMovie()">
+<button *ngIf="selectedMovie.id == -1" (click)="createMovie()" class="btn btn-outline-dark my-2">
     POST
 </button>
-<button *ngIf="selectedMovie.id != -1" (click)="deleteMovie()">
+<button *ngIf="selectedMovie.id != -1" (click)="deleteMovie()" class="btn btn-outline-dark mx-2 my-2">
     DELETE
 </button>
+</div>
+</div>

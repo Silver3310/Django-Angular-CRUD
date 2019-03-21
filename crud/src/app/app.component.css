@@ -1,0 +1,4 @@
+.container .list-group .list-group-item:hover {
+    cursor: pointer;
+    color: red;
+}
